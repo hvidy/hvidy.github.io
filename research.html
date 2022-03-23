@@ -22,7 +22,9 @@
   <p>The oscillations are analysed by looking at variations in the luminosity of the star, as in the <a href="http://kepler.nasa.gov/" class="nav2">Kepler mission</a>, or in the velocity of the star's surface as it oscillates, as in the <a href="http://www.phys.unsw.edu.au/~cgt/planet/AAPS_Home.html" class="nav2">Anglo-Australian Planet Search</a>. This information can then be used to estimate the age, mass and size of the stars. The process is akin to listening to a note played on a guitar, then trying to work out which string was played and where it was fretted. The same data can also be used to find planets around distant stars. For more information on the contribution of the University of Sydney's asteroseismolgy group to NASA's Kepler mission, visit <a href="http://www.physics.usyd.edu.au/~stello/Kepler.html" class="nav2">here</a>.</p>
 -->
 
-  <h3 class="head"> Asteroseismology </h3>
+<p> 
+
+<!--   <h3 class="head"> Asteroseismology </h3>
   <p>
 Asteroseismology (from Greek <i>aster</i> = star + <i>seismos</i> = tremor + <i>logos = reasoning, discourse</i>) 
 is the study of stellar pulsations. The properties of these pulsations depend on 
@@ -58,9 +60,26 @@ stellar angular diameters can be used to obtain linear radii and effective tempe
 interferometry can be used to test asteroseismology by comparing the direct measurement of radius
 with those derived from asteroseismology. In combination with asteroseismology, we can also use the 
 interferometric measurements to place tighter constraints on stellar models.
-</p>
-  <h3 class="head"> Projects </h3>
+</p> -->
 
+  <h2 class="head">Python packages</h2>
+  <p>I have developed the following Python packages to address the various difficulties encountered when processing Kepler and TESS data of particularly bright stars. Please feel free to use and modify this code under a GPL v3 license.</p>
+
+  <h3 class="head"><a href="https://github.com/hvidy/mundey" class="nav2">mundey</a></h3>
+  <p>Bright stars saturate the TESS cameras, resulting in excess charge bleeding along CCD columns. For particularly bright stars, and those high in the science frame and/or the upper buffer rows, this excess charge can bleed into the upper serial register and result in an overestimated smear correction. This not only renders data for these stars unusable, but also for any star that appears in the same CCD column. This code, mundey, recalibrates TESS target pixel files, including a new smear correction, calculated from the target pixel file itself, that circumvents this problem.</p>
+
+  <h3 class="head"><a href="https://hvidy.github.io/halophot/" class="nav2">halophot</a></h3>
+  <p>Saturation is not, by itself, a barrier to performing precise photometry. The saturation process is largely conservative, with the excess charge simply spilling into the adjacent pixels. Simple aperture photometry will therefore still work, provided the aperture includes the bleed column. Problems arise, however, when the star gets <i>too</i> bright, and the bleed column gets longer. Longer bleed columns necessitate saving data from a larger number of pixels. On a space telescope with limited data storage and telemetry, observing a single bright star comes at the cost of observing many more fainter stars. Additionally, the saturation may bleed off the edge of a CCD, and then it is no longer possible to capture all the flux. To overcome this, we have developed the halo photometry method, that seeks to recover stellar signals using a limited number of unsaturated pixels that surround the star in a halo of diffracted, reflected, and scattered light. This package implements this method, with the contribution from each pixel weighted to minimise the total variation in the resultant light curve and thereby minimise instrumental signals.</p>
+
+  <img src="halo_photometry.png", width="1000">
+
+  <h3 class="head"><a href="https://github.com/hvidy/sydsap" class="nav2">sydsap</a></h3>
+  <p>Occassionally, light curves provided by the TESS Science Processing Operations Center (SPOC) contain significant scatter, particularly during periods of less stable spacecraft pointing. Often the light curve quality can be significantly improved by picking a different, generally larger, aperture. The purpose of this code is to generate improved light curves when this situation occurs, primarily using methods from the lightkurve package. It first generates a new aperture mask, then calculates a new light curve from simple aperture photometry over this mask. Finally, it removes some instrumental noise using linear regression.</p>
+
+  <h3 class="head"><a href="https://github.com/hvidy/tessbkgd" class="nav2">tessbkgd</a></h3>
+  <p>The backgrounds calcluated by the SPOC pipeline have a constant value across a TESS target pixel file at each cadence. While this works well for fainter stars, there can be significant gradients in the background across the large target pixel files of bright stars. This is particularly the case when there are significant Earth- and Moon-shine events during which the background changes rapidly. An example of the impact of this is the transit-like signal found in the light curve of the nearby star &tau; Ceti by <a href="https://iopscience.iop.org/article/10.3847/2515-5172/ab49ff" class="nav2">Nora Eisner and collaborators</a>. Additionally, backgrounds around bright stars tend to be contaminated by flux from these stars. This code calculates new backgrounds fluxes that takes into account gradients across the image, and are based on pixels further away from bright stars to minimise the impacts of these effects.</p>
+
+<!-- 
 
   <h4 class="head"> Kepler Asteroseismic Science Consortium</h4>
 
@@ -81,15 +100,15 @@ interferometric measurements to place tighter constraints on stellar models.
 
     <p><a href="https://hvidy.github.io/song/" class="nav2">SONG Interferometric Follow-Up research pages</a> (password required). </p>
 
-<!-- <img src="https://hvidy.github.io/redwave.png", width="1000"> -->
+ --><!-- <img src="https://hvidy.github.io/redwave.png", width="1000"> -->
 
-  <h3 class="head"> Curriculum Vitae </h3>
+  <h2 class="head">Curriculum Vitae</h3>
 
-  <p><strike>A recent</strike> An out-of-date CV can be found <a href="CV_June14.pdf" class="nav2">here</a>. </p>
+  <p>A recent CV can be found <a href="TWhite_Academic_CV_2022.pdf" class="nav2">here</a>. </p>
 
-  <h3 class="head"> Presentations and Publications </h3>
+  <h2 class="head">Publications</h3>
 
-  <p>A list of my presentations and publications can be found <a href="https://hvidy.github.io/publications.html" class="nav2">here</a>. </p>
+  <p>An ADS library of my publications can be found <a href="https://ui.adsabs.harvard.edu/user/libraries/h6W6aBOXSWmaN_3QIXydVg" class="nav2">here</a>. </p>
 
 <!--   <h3 class="head"> Publications </h3>
 
