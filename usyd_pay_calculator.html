@@ -123,6 +123,11 @@
       getPayLevelData(chosenPayLevel);
       getDateData();
 
+      var payments = [];
+      for (var i = 0; i < dates.length; i++) {
+        payments.push(currentPay/26);
+      }
+
       var trace1 = {
         x: dates,
         y: currentPay/26,
