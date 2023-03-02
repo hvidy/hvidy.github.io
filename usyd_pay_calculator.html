@@ -140,8 +140,28 @@
 
   };
 
+  var innerContainer = document.querySelector('[data-num="0"'),
+      plotEl = innerContainer.querySelector('.plot'),
+      payLevelSelector = innerContainer.querySelector('.payleveldata');
 
-  })
+  function assignOptions(textArray, selector) {
+    for (var i = 0; i < textArray.length; i++) {
+      var currentOption = document.createElement('option');
+      currentOption.text = textArray[i];
+      selector.appendChild(currentOption);
+    }
+  }
+
+  assignOptions(listofPayLevels, payLevelSelector);
+
+  function updatePayLevel(){
+    setBarPlot(payLevelSelector.value);
+  }
+
+  payLevelSelector.addEventListener('change', updatePayLevel, false);
+
+
+  });
 
   // function makeplot() {
     
