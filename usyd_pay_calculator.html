@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+
+    <!-- Basic Page Needs–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta charset="utf-8">
+    <title>USyd EBA Pay Offer Calculator</title>
+    <meta name="description" content="">
+
+    <!-- CSS–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="new.css">
+    
+    <!-- Scripts–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <!-- <script type="text/javascript" src="js/utils.js"></script> -->
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<!--     <script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+        <script
+        src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+        crossorigin="anonymous"></script>
+ -->    <!-- <script type="text/javascript" src="js/plotly-latest.min.js"></script> -->
+    
+    <!-- Favicon  -->
+    <!-- <link rel="icon" type="image/jpg" href="css/icon.jpg"> -->
+    
+</head>
+
+<body>
+  <!-- Primary Page Layout–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+<h1>Pay Offer Calculator &mdash; University of Sydney</h1>
+
+  <div id="content"></div>
+
+</body>
+
+
+<!-- <div>
+  <ul class="ruler" id="mydiv" data-items="10"></ul>
+</div>
+ -->
+
+<!-- <div>
+  <div class="slidecontainer">
+    <input type="range" min="1" max="15" value="1" class="slider" id="spacing" step=0.25>
+  </div>
+</div>
+
+ -->
+<!-- Scripts! ––––––––––––––––––––––––––––––––––––––––––––––––––-->
+<script>
+
+//Called when the program first opens
+// window.onload = function() {
+
+  //Instantiate the chart and bind it to content html
+  // var graphDiv = document.getElementById('content');
+
+  var date_df = 'https://github.com/hvidy/hvidy.github.io/blob/master/data/dates.csv';
+  var xDateSeriesName = 'date';
+  var yDateSeriesName = 'idx';
+
+  var d3 = Plotly.d3;
+
+  var gd3 = d3.select("div[id='content']");
+
+  var content = gd3.node();
+
+  function makeplot() {
+    Plotly.d3.csv(date_df, function(data){
+      processData(data,xDateSeriesName,yDateSeriesName)
+    });
+  };
+
+  function processData(allRows,xLabel,yLabel) {
+    console.log(allRows.length);
+    var x = [], y=[];
+
+    for (var i=0; i<allRows.length; i++) {
+      row = allRows[i]
+
+      x.push(row[xLabel]);
+      y.push(row[yLabel]);
+      if(i === 0) {
+        console.log(i);
+        console.log(row);
+      }
+    }
+    makePlotly(x,y);
+  }
+
+  function makePlotly(x,y){
+    var traces = [{
+      x: x,
+      y: y,
+    }];
+
+    Plotly.newPlot(content, traces);
+  };
+
+  makeplot();
+
+
+
+//   Plotly.d3.csv("data/dates.csv", function(err, rows) => {
+//     var data 
+
+
+//     function unpack(date, key) {
+//       return date.map(function(date) { return date[key]; });
+//     }
+
+//   var usyd_trace = {
+//       x: unpack(date, 'date'),
+//       y: unpack(date, 'idx'),
+//       type: 'bar'
+//     };
+
+//   var data = [usyd_trace];
+
+//   Plotly.newPlot(graphDiv, data);
+
+// })
+// }
+
+  // Plotly.d3.csv("data/0531+21_lowf.csv", function(err, ground){
+  //   function unpack(ground, key) {
+  //     return ground.map(function(ground) { return ground[key]; });
+  //   }
+
+//   var trace1 = {
+//     type: "scattergl",
+//     mode: "lines",
+//     name: 'Ground-based',
+//     x: unpack(ground, 'time'),
+//     y: unpack(ground, 'intensity_400'),
+//     marker: {
+//     //color: 'rgb(217,95,2)',
+//     opacity: 0.9,
+//     size: 6,
+//   }
+//   }
+
+//   var data = [
+//     trace1,
+//   ];
+      
+//   var layout = {
+//     hovermode: "closest",
+//     yaxis: {title: 'Intensity'},
+//     xaxis: {title: 'Time (seconds)'},
+//     margin: {
+//       t: 50, //top margin
+//       l: 100, //left margin
+//       r: 50, //right margin
+//       b: 50 //bottom margin
+//           },
+//       legend: {
+//       x: 0,
+//       y: 1,
+//       traceorder: 'normal',
+//       font: {
+//         family: 'sans-serif',
+//         size: 30,
+//         color: '#000'
+//       },
+//       bgcolor: '#E2E2E2',
+//       bordercolor: '#FFFFFF',
+//       borderwidth: 3
+//     },
+//           };
+
+//   var config2 = {
+//    modeBarButtonsToRemove: ['toImage', 'sendDataToCloud', 
+//           'hoverCompareCartesian','toggleSpikelines',
+//           'autoScale2d','select2d','lasso2d'],
+//    displaylogo: false
+// };
+
+//   Plotly.newPlot(graphDiv, data, layout, config2);
+
+
+// function dragElement(elmnt) {
+//   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+//   if (document.getElementById(elmnt.id + "header")) {
+//     // if present, the header is where you move the DIV from:
+//     document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+//   } else {
+//     // otherwise, move the DIV from anywhere inside the DIV:
+//     elmnt.onmousedown = dragMouseDown;
+//   }
+
+//   function dragMouseDown(e) {
+//     e = e || window.event;
+//     e.preventDefault();
+//     // get the mouse cursor position at startup:
+//     pos3 = e.clientX;
+//     pos4 = e.clientY;
+//     document.onmouseup = closeDragElement;
+//     // call a function whenever the cursor moves:
+//     document.onmousemove = elementDrag;
+//   }
+
+//   function elementDrag(e) {
+//     e = e || window.event;
+//     e.preventDefault();
+//     // calculate the new cursor position:
+//     pos1 = pos3 - e.clientX;
+//     pos2 = pos4 - e.clientY;
+//     pos3 = e.clientX;
+//     pos4 = e.clientY;
+//     // set the element's new position:
+//     elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+//     elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+//   }
+
+//   function closeDragElement() {
+//     // stop moving when mouse button is released:
+//     document.onmouseup = null;
+//     document.onmousemove = null;
+//   }
+// }
+
+// });
+
+// }
+
+</script>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>

@@ -1,0 +1,55 @@
+h1 {color: black; font-family: Verdana, Arial, Helvetica, sans-serif;} 
+p {color: black; font-family: Verdana, Arial, Helvetica, sans-serif;} 
+
+/*div#navigation {height: 21px; left: 2.5%; right: 2.5%; background: black; background-image: url("banner.png"); background-size: cover; background-position:center; background-repeat: no-repeat; padding: 15px; margin: 0px 0px 10px 0px; overflow: auto; position: fixed; }
+
+a.navr:link {color: grey; text-decoration: none; font-family: Verdana, Arial, Helvetica, sans-serif;}
+a.navr:visited {color: grey; text-decoration: none; font-family: Verdana, Arial, Helvetica, sans-serif;}
+a.navr:hover {color: #ff4500; text-decoration: none; font-family: Verdana, Arial, Helvetica, sans-serif;}
+a.navr:active {color: red; font-family: Verdana, Arial, Helvetica, sans-serif;}
+
+a.navg:link {color: grey; text-decoration: none; font-family: Verdana, Arial, Helvetica, sans-serif;}
+a.navg:visited {color: grey; text-decoration: none; font-family: Verdana, Arial, Helvetica, sans-serif;}
+a.navg:hover {color: #32cd32; text-decoration: none; font-family: Verdana, Arial, Helvetica, sans-serif;}
+a.navg:active {color: red; font-family: Verdana, Arial, Helvetica, sans-serif;}
+
+a.navb:link {color: grey; text-decoration: none; font-family: Verdana, Arial, Helvetica, sans-serif;}
+a.navb:visited {color: grey; text-decoration: none; font-family: Verdana, Arial, Helvetica, sans-serif;}
+a.navb:hover {color: #00bfff; text-decoration: none; font-family: Verdana, Arial, Helvetica, sans-serif;}
+a.navb:active {color: red; font-family: Verdana, Arial, Helvetica, sans-serif;}
+
+a.nav2:link {color: grey; text-decoration: none; font-family: Verdana, Arial, Helvetica, sans-serif;}
+a.nav2:visited {color: grey; text-decoration: none; font-family: Verdana, Arial, Helvetica, sans-serif;}
+a.nav2:hover {color: black; text-decoration: none; font-family: Verdana, Arial, Helvetica, sans-serif;}
+a.nav2:active {color: red; font-family: Verdana, Arial, Helvetica, sans-serif;}
+
+a.ext:link {color: grey; text-decoration: none; font-weight: bold; font-family: Verdana, Arial, Helvetica, sans-serif;}
+a.ext:after {content: url(http://upload.wikimedia.org/wikipedia/commons/4/44/Icon_External_Link.svg); margin: 0 0 0 5px;}
+
+.close:after {content: url(https://upload.wikimedia.org/wikipedia/commons/c/ca/Fileclose-2.0.svg); margin: 0 0 0 5px}
+
+.head {color: grey; text-decoration: none; font-weight: bold; font-family: Verdana, Arial, Helvetica, sans-serif;}
+
+.current {color: white; text-decoration: none; font-weight: bold; font-family: Verdana, Arial, Helvetica, sans-serif;}
+.currentr {color: #ff4500; text-decoration: none; font-weight: bold; font-family: Verdana, Arial, Helvetica, sans-serif;}
+.currentg {color: #32cd32; text-decoration: none; font-weight: bold; font-family: Verdana, Arial, Helvetica, sans-serif;}
+.currentb {color: #00bfff; text-decoration: none; font-weight: bold; font-family: Verdana, Arial, Helvetica, sans-serif;}
+
+.smallprint {color: grey; font-size: 0.7em; text-decoration: none; font-weight: bold; font-family: Verdana, Arial, Helvetica, sans-serif;}
+
+div#foot {width: 1100px; background: white; padding: 0px; margin: 0 auto; }
+
+div#abdomen {width: 1200px; background: white; padding: 50px; margin: 0 auto; top: 0; bottom: 0;}
+
+div#tableft {float: left; width: 100px; background: white; padding: 10px;}
+
+div#tabtext {float: left; width: 730px; background: white; padding: 0px;}
+
+div#tabright {float: left; width: 550px; background: white; padding: 10px; margin: 0 auto; }
+
+div#tabpic {float: left; width: 150px; background: white; padding: 20px; margin: 0 auto; }
+
+div#tabfig {float: left; width: 650px; background: white; padding: 0px; margin: 0 auto; }
+
+div#tabres {float: left; width: 550px; background: white; padding: 0px; margin: 0 auto; }
+*/
