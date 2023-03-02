@@ -65,48 +65,116 @@
   var xDateSeriesName = 'date';
   var yDateSeriesName = 'idx';
 
+  var salary_df = 'data/current_salaries.csv';
+
   var d3 = Plotly.d3;
 
   var gd3 = d3.select("div[id='content']");
 
   var content = gd3.node();
 
-  function makeplot() {
-    Plotly.d3.csv(date_df, function(data){
-      processData(data,xDateSeriesName,yDateSeriesName)
-    });
-  };
+  Plotly.d3.csv(salary_df, function(err, rows){
+    function unpack(rows, key) {
+      return rows.map(function(row) {return row[key];});
+    }
 
-  function processData(allRows,xLabel,yLabel) {
-    console.log(allRows.length);
-    var x = [], y=[];
+    var allPayLevels = unpack(rows, 'code'),
+        allPay = unpack(rows,'salary')
+        listofPayLevels = [],
+        currentPayLevel,
+        currentPay = [],
+        dates = [];
 
-    for (var i=0; i<allRows.length; i++) {
-      row = allRows[i]
 
-      x.push(row[xLabel]);
-      y.push(row[yLabel]);
-      if(i === 0) {
-        console.log(i);
-        console.log(row);
+    for (var i = 0; i < allPayLevels.length; i++){
+      if (listofPayLevels.indexOf(allPayLevels[i]) === -1){
+        listofPayLevels.push(allPayLevels[i]);
       }
     }
-    makePlotly(x,y);
-  }
 
-  function makePlotly(x,y){
-    var traces = [{
-      type: 'bar',
-      x: x,
-      y: y,
-    }];
+    function getPayLevelData(chosenPayLevel) {
+      currentPay = [];
+      for (var i = 0; i < allPayLevels.length; i++){
+        if (allPayLevels[i] === chosenPayLevel) {
+          currentPay.push(allPay[i]);
+        }
+      }
+    };
 
-    Plotly.newPlot(content, traces);
+    function getDateData() {
+      Plotly.d3.csv(date_df, function(data){
+        processData(data,xDateSeriesName)
+      });
+    }
+
+    function processData(allRows,xLabel) {
+      var dates =[];
+
+      for (var i = 0, i < allRows.length; i++) {
+        row = allRows[i]
+        dates.push(row[xlabel]);
+      }
+    }
+
+    //Default Pay Level
+    setBarPlot('A1');
+
+    function setBarPlot(chosenPayLevel) {
+      getPayLevelData(chosenPayLevel);
+      getDateData();
+
+      var trace1 = {
+        x: dates,
+        y: currentPay/26,
+        mode: 'bar'
+      };
+
+      var data = [trace1];
+
+      Plotly.newPlot('content', data)
+
   };
 
-  makeplot();
 
+  })
 
+  // function makeplot() {
+    
+  // };
+
+  // function processData(allRows,xLabel,yLabel) {
+  //   console.log(allRows.length);
+  //   var x = [], y=[];
+
+  //   for (var i=0; i<allRows.length; i++) {
+  //     row = allRows[i]
+
+  //     x.push(row[xLabel]);
+  //     y.push(row[yLabel]);
+  //     if(i === 0) {
+  //       console.log(i);
+  //       console.log(row);
+  //     }
+  //   }
+  //   makePlotly(x,y);
+  // }
+
+  // function makePlotly(x,y){
+  //   var traces = [{
+  //     type: 'bar',
+  //     x: x,
+  //     y: y,
+  //   }];
+
+  //   Plotly.newPlot(content, traces);
+  // };
+
+  // makeplot();
+
+//instruction resizes plot
+window.onresize = function() {
+  Plotly.Plots.resize(my_Div);
+};
 
 //   Plotly.d3.csv("data/dates.csv", function(err, rows) => {
 //     var data 
