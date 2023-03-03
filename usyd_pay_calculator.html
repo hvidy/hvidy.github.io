@@ -127,7 +127,7 @@
       }
 
       var payments = [];
-      var today = new Date();
+      var today = new Date().toISOString().slice(0,10);
       console.log(today)
       for (var i = 0; i < dates.length; i++) {
         pay = currentPay
