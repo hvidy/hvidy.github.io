@@ -81,12 +81,13 @@
   var content = gd3.node();
 
   Plotly.d3.csv(salary_df, function(err, rows){
+
     function unpack(rows, key) {
       return rows.map(function(row) {return row[key];});
     }
 
-    var allPayLevels = unpack(rows, 'code'),
-        allPay = unpack(rows,'salary'),
+    var allPay = unpack(rows,'salary'),
+        allPayLevels = unpack(rows,'code'),
         listofPayLevels = [],
         currentPayLevel,
         currentPay = [],
