@@ -146,7 +146,8 @@
         if (dates[i] > '2026-07-01') {
           pay = Math.round(pay*1.035)
         }
-        payments.push(pay/26);
+        fortnight_pay = pay/365.25*14
+        payments.push(fortnight_pay.toFixed(2));
       }
 
       var inflation_payments = []
@@ -167,7 +168,8 @@
         if (dates[i] > '2026-07-01') {
           pay = Math.round(pay*1.025)
         }
-        inflation_payments.push(pay/26);
+        fortnight_pay = pay/365.25*14
+        inflation_payments.push(fortnight_pay.toFixed(2));
       }
 
       var wsu_payments = []
@@ -188,7 +190,8 @@
         if (dates[i] > '2025-03-01') {
           pay = Math.round(pay*1.026)
         }
-        wsu_payments.push(pay/26);
+        fortnight_pay = pay/365.25*14
+        wsu_payments.push(fortnight_pay.toFixed(2));
       }    
 
 
