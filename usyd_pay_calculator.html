@@ -37,10 +37,10 @@
 
   <div id="barplots">
     <div class="barplot", data-num="0">
-      <div class="plot" id="content"></div>
       <div class="control-row">
         <p>Pay Grade: <select class="payleveldata"></select></p>
       </div>
+      <div class="plot" id="content"></div>
     </div>
   </div>
 
@@ -130,10 +130,15 @@
       getPayLevelData(chosenPayLevel);
       getDateData();
 
+      console.log(currentPay)
+      console.log(dates)
+
       var payments = [];
       for (var i = 0; i < dates.length; i++) {
         payments.push(currentPay/26);
       }
+
+      console.log(payments)
 
       var trace1 = {
         x: dates,
@@ -205,7 +210,7 @@
 
 //instruction resizes plot
 window.onresize = function() {
-  Plotly.Plots.resize(my_Div);
+  Plotly.Plots.resize(content);
 };
 
 //   Plotly.d3.csv("data/dates.csv", function(err, rows) => {
