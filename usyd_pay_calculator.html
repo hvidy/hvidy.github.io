@@ -168,7 +168,28 @@
           pay = Math.round(pay*1.025)
         }
         inflation_payments.push(pay/26);
-      } 
+      }
+
+      var wsu_payments = []
+      for (var i = 0; i < dates.length; i++) {
+        pay = currentPay
+        if (dates[i] > '2022-04-29') {
+          pay = Math.round(pay*1.02)
+        }
+        if (dates[i] > '2022-10-14') {
+          pay = Math.round(pay*1.026)
+        }
+        if (dates[i] > '2023-10-01') {
+          pay = Math.round(pay*1.0335)
+        }
+        if (dates[i] > '2024-10-01') {
+          pay = Math.round(pay*1.029)
+        }
+        if (dates[i] > '2025-03-01') {
+          pay = Math.round(pay*1.026)
+        }
+        wsu_payments.push(pay/26);
+      }    
 
 
       var trace1 = {
@@ -185,7 +206,15 @@
         mode: 'bar'
       };
 
-      var data = [trace1, trace2];
+      var trace3 = {
+        x: dates,
+        y: wsu_payments,
+        name: 'WSU Agreement',
+        mode: 'bar'
+      };
+
+
+      var data = [trace1, trace2, trace3];
 
       var layout = {
         xaxis:{
