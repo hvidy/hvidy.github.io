@@ -126,15 +126,11 @@
         dates.push(row[xLabel]);
       }
 
-      console.log(dates);
-      console.log(currentPay);
-
       var payments = [];
       for (var i = 0; i < dates.length; i++) {
         payments.push(currentPay/26);
       }
 
-      console.log(payments);
 
       var trace1 = {
         x: dates,
@@ -143,6 +139,17 @@
       };
 
       var data = [trace1];
+
+      var layout = {
+        xaxis:{
+          title: 'Pay date'
+        }
+        yaxis:{
+          title: 'Gross pay per fortnight ($)',
+          rangemode: 'tozero',
+          autorange: true
+        }
+      }
 
       Plotly.newPlot('content', data)
 
