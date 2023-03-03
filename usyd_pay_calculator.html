@@ -128,10 +128,23 @@
 
       var payments = [];
       for (var i = 0; i < dates.length; i++) {
-        if (dates[i] > '2024-06-24') {
-          console.log(dates[i]);
+        pay = currentPay
+        if (dates[i] > '2022-07-02') {
+          pay = Math.round(pay*1.02)
         }
-        payments.push(currentPay/26);
+        if (dates[i] > new Date()) {
+          pay = Math.round(pay*1.046)
+        }
+        if (dates[i] > '2024-07-01') {
+          pay = Math.round(pay*1.0325)
+        }
+        if (dates[i] > '2025-07-01') {
+          pay = Math.round(pay*1.0325)
+        }
+        if (dates[i] > '2026-07-01') {
+          pay = Math.round(pay*1.035)
+        }
+        payments.push(pay/26);
       }
 
 
