@@ -100,6 +100,8 @@
     }
 
     function getPayLevelData(chosenPayLevel) {
+      console.log(chosenPayLevel)
+      console.log(allPayLevels.length)
       currentPay = [];
       for (var i = 0; i < allPayLevels.length; i++){
         if (allPayLevels[i] === chosenPayLevel) {
