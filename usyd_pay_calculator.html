@@ -101,21 +101,36 @@
     }
 
     function getPayLevelData(chosenPayLevel) {
-      console.log(chosenPayLevel)
-      console.log(allPay)
       currentPay = [];
       for (var i = 0; i < allPayLevels.length; i++){
-        console.log(allPayLevels[i])
         if (allPayLevels[i] === chosenPayLevel) {
           currentPay.push(allPay[i]);
         }
       }
-      console.log(currentPay);
     };
 
     function getDateData() {
       Plotly.d3.csv(date_df, function(data){
         processData(data,xDateSeriesName)
+
+        var payments = [];
+        for (var i = 0; i < dates.length; i++) {
+          payments.push(currentPay/26);
+        }
+
+        console.log(payments)
+
+        var trace1 = {
+          x: dates,
+          y: payments,
+          mode: 'bar'
+        };
+
+        var data = [trace1];
+
+        Plotly.newPlot('content', data)
+
+
       });
     }
 
@@ -136,25 +151,6 @@
       getPayLevelData(chosenPayLevel);
       getDateData();
 
-      console.log(currentPay)
-      console.log(dates)
-
-      var payments = [];
-      for (var i = 0; i < dates.length; i++) {
-        payments.push(currentPay/26);
-      }
-
-      console.log(payments)
-
-      var trace1 = {
-        x: dates,
-        y: payments,
-        mode: 'bar'
-      };
-
-      var data = [trace1];
-
-      Plotly.newPlot('content', data)
 
   };
 
