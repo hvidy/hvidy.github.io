@@ -174,12 +174,14 @@
       var trace1 = {
         x: dates,
         y: payments,
+        name: 'USyd Offer'
         mode: 'bar'
       };
 
       var trace2 = {
         x: dates,
         y: inflation_payments,
+        name: 'Predicted CPI'
         mode: 'bar'
       };
 
@@ -191,7 +193,7 @@
         },
         yaxis:{
           title: 'Gross pay per fortnight ($)',
-          rangemode: 'tozero',
+          // rangemode: 'tozero',
           autorange: true
         }
       }
