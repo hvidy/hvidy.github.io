@@ -111,7 +111,10 @@
 
     function getDateData() {
       Plotly.d3.csv(date_df, function(data){
-        processData(data,xDateSeriesName)
+
+        var dates = unpack(rows,'date'),
+
+        // processData(data,xDateSeriesName)
 
         console.log(dates);
         console.log(currentPay);
