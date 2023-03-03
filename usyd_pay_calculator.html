@@ -127,12 +127,13 @@
       }
 
       var payments = [];
+      var today = new Date();
       for (var i = 0; i < dates.length; i++) {
         pay = currentPay
         if (dates[i] > '2022-07-02') {
           pay = Math.round(pay*1.02)
         }
-        if (dates[i] > new Date()) {
+        if (dates[i] > today) {
           pay = Math.round(pay*1.046)
         }
         if (dates[i] > '2024-07-01') {
@@ -147,6 +148,27 @@
         payments.push(pay/26);
       }
 
+      var inflation_payments = []
+      for (var i = 0; i < dates.length; i++) {
+        pay = currentPay
+        if (dates[i] > '2022-07-01') {
+          pay = Math.round(pay*1.061)
+        }
+        if (dates[i] > '2023-07-01') {
+          pay = Math.round(pay*1.067)
+        }
+        if (dates[i] > '2024-07-01') {
+          pay = Math.round(pay*1.036)
+        }
+        if (dates[i] > '2025-07-01') {
+          pay = Math.round(pay*1.03)
+        }
+        if (dates[i] > '2026-07-01') {
+          pay = Math.round(pay*1.025)
+        }
+        inflation_payments.push(pay/26);
+      } 
+
 
       var trace1 = {
         x: dates,
@@ -154,7 +176,13 @@
         mode: 'bar'
       };
 
-      var data = [trace1];
+      var trace2 = {
+        x: dates,
+        y: inflation_payments,
+        mode: 'bar'
+      };
+
+      var data = [trace1, trace2];
 
       var layout = {
         xaxis:{
