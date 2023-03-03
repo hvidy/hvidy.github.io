@@ -101,9 +101,10 @@
 
     function getPayLevelData(chosenPayLevel) {
       console.log(chosenPayLevel)
-      console.log(allPayLevels.length)
+      console.log(allPay)
       currentPay = [];
       for (var i = 0; i < allPayLevels.length; i++){
+        console.log(allPayLevels[i])
         if (allPayLevels[i] === chosenPayLevel) {
           currentPay.push(allPay[i]);
         }
