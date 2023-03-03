@@ -113,12 +113,15 @@
       Plotly.d3.csv(date_df, function(data){
         processData(data,xDateSeriesName)
 
+        console.log(dates);
+        console.log(currentPay);
+
         var payments = [];
         for (var i = 0; i < dates.length; i++) {
           payments.push(currentPay/26);
         }
 
-        console.log(payments)
+        console.log(payments);
 
         var trace1 = {
           x: dates,
@@ -141,7 +144,6 @@
         row = allRows[i]
         dates.push(row[xLabel]);
       }
-      console.log(dates);
     }
 
     //Default Pay Level
