@@ -112,29 +112,7 @@
     function getDateData() {
       Plotly.d3.csv(date_df, function(data){
 
-        var dates = unpack(rows,'date');
-
-        // processData(data,xDateSeriesName)
-
-        console.log(dates);
-        console.log(currentPay);
-
-        var payments = [];
-        for (var i = 0; i < dates.length; i++) {
-          payments.push(currentPay/26);
-        }
-
-        console.log(payments);
-
-        var trace1 = {
-          x: dates,
-          y: payments,
-          mode: 'bar'
-        };
-
-        var data = [trace1];
-
-        Plotly.newPlot('content', data)
+        processData(data,xDateSeriesName)
 
 
       });
@@ -147,6 +125,27 @@
         row = allRows[i]
         dates.push(row[xLabel]);
       }
+
+      console.log(dates);
+      console.log(currentPay);
+
+      var payments = [];
+      for (var i = 0; i < dates.length; i++) {
+        payments.push(currentPay/26);
+      }
+
+      console.log(payments);
+
+      var trace1 = {
+        x: dates,
+        y: payments,
+        mode: 'bar'
+      };
+
+      var data = [trace1];
+
+      Plotly.newPlot('content', data)
+
     }
 
     //Default Pay Level
