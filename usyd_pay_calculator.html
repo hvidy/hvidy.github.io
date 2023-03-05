@@ -213,6 +213,36 @@
         utas_payments.push(fortnight_pay.toFixed(2));
       }
 
+      var uplift = 0
+      if (chosenPayLevel.slice(0,1) == 'A' || chosenPayLevel.slice(3,4) < 6){
+        uplift = 1000
+      }
+      if (chosenPayLevel.slice(3,4) > 5 || chosenPayLevel.slice(3,4) < 8){
+        uplift = 500
+      }
+
+      var acu_payments = []
+      for (var i = 0; i < dates.length; i++) {
+        pay = currentPay
+        if (dates[i] > '2022-07-09') {
+          pay = Math.round(pay*1.022)
+        }
+        if (dates[i] > '2023-01-01') {
+          pay = Math.round((pay+uplift)*1.028)
+        }
+        if (dates[i] > '2024-01-01') {
+          pay = Math.round(pay*1.0375)
+        }
+        if (dates[i] > '2025-01-01') {
+          pay = Math.round(pay*1.03)
+        }
+        if (dates[i] > '2025-06-30') {
+          pay = Math.round(pay*1.028)
+        }
+        fortnight_pay = pay/365.25*14
+        acu_payments.push(fortnight_pay.toFixed(2));
+      }
+
       var trace1 = {
         x: dates,
         y: payments,
