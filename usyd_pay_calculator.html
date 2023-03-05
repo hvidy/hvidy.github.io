@@ -32,8 +32,29 @@
       </div>
       <div class="plot" id="content"></div>
       <div class="plot" id="content-yearly"></div>
+      <p id="content-totals"></div>
     </div>
   </div>
+
+<h2>Notes</h2>
+<ul>
+  <li>All payments are before tax.</li>
+  <li>Professional Staff salarys are shown for a 35 hour week.</li>
+  <li>The 2023 pay increase for the USyd Offer is calculated as if it occurs for the <i>current</i> pay period, instead of the first pay period following the commencement of the new agreement, because we do not yet know when agreement will be reached. This has the effect of inflating the value of the University's offer.</li>
+  <li>The one-off payments of $1000 in 2022 and proposed $2000 on agreement are included in the yearly and 5-yearly totals, but not in the chart of pay per fortnight.</li>
+  <li>The effects of promotions and yearly progression up steps within paygrades are not included.</li>
+  <li>The salary increases for the Predicted CPI salary are the percentage increases in the Consumer Price Index for the June Reference Quarter, as <a href="https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/consumer-price-index-australia/latest-release">reported by the Australian Bureau of Statisics</a> for June 2022 or as <a href="https://www.rba.gov.au/publications/smp/2023/feb/forecasts.html">forecast by the Reserve Bank of Australia</a> for future periods. The salary increases come into effect from the first pay period in July. This mirrors the salary increase calculation for the University of Canberra from their 2019-2022 Enterprise Agreement, which had increases matching CPI paid in January of each year equal to the CPI percentage increase from the preceeding December quarter. See <a href="https://www.fwc.gov.au/document-search/view/3/aHR0cHM6Ly9zYXNyY2RhdGFwcmRhdWVhYS5ibG9iLmNvcmUud2luZG93cy5uZXQvZW50ZXJwcmlzZWFncmVlbWVudHMvMjAxOS82L2FlNTA0MTIzLnBkZg2?sid=&q=university%24%24canberra">clause 18 of the University of Canberra Enterprise Agreement 2019 - 2022</a></li>
+  <li>The salaries shown for the Western Sydney University (WSU), University of Tasmania (UTas), and Australian Catholic University (ACU) agreements are what University of Sydney salaries would be if the same percentage pay increases are applied at the same dates as set out in those agreements. These agreements may be found at the Fair Work Commission website:
+    <ul>
+      <li><a href="https://www.fwc.gov.au/document-search/view/3/aHR0cHM6Ly9zYXNyY2RhdGFwcmRhdWVhYS5ibG9iLmNvcmUud2luZG93cy5uZXQvZW50ZXJwcmlzZWFncmVlbWVudHMvMjAyMi8xMi9BRTUxODUyOS5wZGY1">Western Sydney University - Academic Staff</a></li>
+      <li><a href="https://www.fwc.gov.au/document-search/view/3/aHR0cHM6Ly9zYXNyY2RhdGFwcmRhdWVhYS5ibG9iLmNvcmUud2luZG93cy5uZXQvZW50ZXJwcmlzZWFncmVlbWVudHMvMjAyMi8xMi9BRTUxODUxMS5wZGY1">Western Sydney University - Professional Staff</a></li>
+      <li><a href="https://www.fwc.gov.au/document-search/view/3/aHR0cHM6Ly9zYXNyY2RhdGFwcmRhdWVhYS5ibG9iLmNvcmUud2luZG93cy5uZXQvZW50ZXJwcmlzZWFncmVlbWVudHMvMjAyMy8xL0FFNTE5MDI3LnBkZg2">University of Tasmania</a></li>
+      <li><a href="https://www.fwc.gov.au/document-search/view/3/aHR0cHM6Ly9zYXNyY2RhdGFwcmRhdWVhYS5ibG9iLmNvcmUud2luZG93cy5uZXQvZW50ZXJwcmlzZWFncmVlbWVudHMvMjAyMy8yL0FFNTE5MDUzLnBkZg2">Australian Catholic University</a></li>
+    </ul>
+    At the time of writing, no other university has its new enterprise agreement available on the Fair Work Comission website, so they are not included.
+  </li>
+  <li>While the University of Sydney's pay offer includes another pay increase in July 2026, the other university agreements expire before this time, so it is not possible to do a comparision for Financial Year 2027.</li>
+</ul>
 
 </body>
 
@@ -44,6 +65,7 @@ WSU - Academic - https://www.fwc.gov.au/document-search/view/3/aHR0cHM6Ly9zYXNyY
 Professional - https://www.fwc.gov.au/document-search/view/3/aHR0cHM6Ly9zYXNyY2RhdGFwcmRhdWVhYS5ibG9iLmNvcmUud2luZG93cy5uZXQvZW50ZXJwcmlzZWFncmVlbWVudHMvMjAyMi8xMi9BRTUxODUxMS5wZGY1
 UTas - https://www.fwc.gov.au/document-search/view/3/aHR0cHM6Ly9zYXNyY2RhdGFwcmRhdWVhYS5ibG9iLmNvcmUud2luZG93cy5uZXQvZW50ZXJwcmlzZWFncmVlbWVudHMvMjAyMy8xL0FFNTE5MDI3LnBkZg2
 
+UniCanberra - https://www.fwc.gov.au/document-search/view/3/aHR0cHM6Ly9zYXNyY2RhdGFwcmRhdWVhYS5ibG9iLmNvcmUud2luZG93cy5uZXQvZW50ZXJwcmlzZWFncmVlbWVudHMvMjAxOS82L2FlNTA0MTIzLnBkZg2
 -->
 
 <!-- <div>
@@ -164,9 +186,9 @@ UTas - https://www.fwc.gov.au/document-search/view/3/aHR0cHM6Ly9zYXNyY2RhdGFwcmR
         if (dates[i] > '2025-07-01') {
           pay = Math.round(pay*1.03)
         }
-        if (dates[i] > '2026-07-01') {
-          pay = Math.round(pay*1.025)
-        }
+        // if (dates[i] > '2026-07-01') {
+        //   pay = Math.round(pay*1.025)
+        // }
         fortnight_pay = pay/365.25*14
         inflation_payments.push(fortnight_pay.toFixed(2));
       }
@@ -304,6 +326,11 @@ UTas - https://www.fwc.gov.au/document-search/view/3/aHR0cHM6Ly9zYXNyY2RhdGFwcmR
           wsu_yearly = [],
           acu_yearly = [],
           inflation_yearly = [],
+          usyd_total = 0,
+          utas_total = 0,
+          wsu_total = 0,
+          acu_total = 0,
+          inflation_total = 0,
           finyear = [];
 
       for (var fy = 22; fy < 27; fy++) {
@@ -319,19 +346,30 @@ UTas - https://www.fwc.gov.au/document-search/view/3/aHR0cHM6Ly9zYXNyY2RhdGFwcmR
         }
 
         sum = usyd_payments.slice(start_index,end_index).reduce((partialSum, a) => partialSum + parseFloat(a), 0);
+        if (fy == 22){
+          sum += 1000;
+        }
+        if (fy == 23){
+          sum += 2000;
+        }
         usyd_yearly.push(sum);
+        usyd_total += sum;
 
         sum = utas_payments.slice(start_index,end_index).reduce((partialSum, a) => partialSum + parseFloat(a), 0);
         utas_yearly.push(sum);
+        utas_total += sum;
 
         sum = wsu_payments.slice(start_index,end_index).reduce((partialSum, a) => partialSum + parseFloat(a), 0);
         wsu_yearly.push(sum);
+        wsu_total += sum;
 
         sum = acu_payments.slice(start_index,end_index).reduce((partialSum, a) => partialSum + parseFloat(a), 0);
         acu_yearly.push(sum);
+        acu_total += sum;
 
         sum = inflation_payments.slice(start_index,end_index).reduce((partialSum, a) => partialSum + parseFloat(a), 0);
         inflation_yearly.push(sum);
+        inflation_total += sum;
       }
 
       function checkStart(date){
@@ -393,7 +431,8 @@ UTas - https://www.fwc.gov.au/document-search/view/3/aHR0cHM6Ly9zYXNyY2RhdGFwcmR
 
       Plotly.newPlot('content-yearly', data2, layout2)
 
-
+      document.getElementById('content-totals').innerHTML =
+      "<h2>Total earnings (July 2021 &mdash; June 2026)</h2>";
 
 
 
@@ -436,6 +475,7 @@ UTas - https://www.fwc.gov.au/document-search/view/3/aHR0cHM6Ly9zYXNyY2RhdGFwcmR
 //instruction resizes plot
 window.onresize = function() {
   Plotly.Plots.resize(content);
+  Plotly.Plots.resize(content-yearly);
 };
 
 
