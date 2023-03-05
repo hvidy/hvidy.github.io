@@ -12,18 +12,8 @@
     <link rel="stylesheet" href="new.css">
     
     <!-- Scripts–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <!-- <script type="text/javascript" src="js/utils.js"></script> -->
     <!-- Plotly.js -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-<!--     <script
-        src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
-        <script
-        src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
-        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
-        crossorigin="anonymous"></script>
- -->    <!-- <script type="text/javascript" src="js/plotly-latest.min.js"></script> -->
     
     <!-- Favicon  -->
     <link rel="icon" type="image/jpg" href="icon.jpg">
@@ -46,6 +36,14 @@
 
 </body>
 
+<!--
+Agreements:
+ACU - https://www.fwc.gov.au/document-search/view/3/aHR0cHM6Ly9zYXNyY2RhdGFwcmRhdWVhYS5ibG9iLmNvcmUud2luZG93cy5uZXQvZW50ZXJwcmlzZWFncmVlbWVudHMvMjAyMy8yL0FFNTE5MDUzLnBkZg2
+WSU - Academic - https://www.fwc.gov.au/document-search/view/3/aHR0cHM6Ly9zYXNyY2RhdGFwcmRhdWVhYS5ibG9iLmNvcmUud2luZG93cy5uZXQvZW50ZXJwcmlzZWFncmVlbWVudHMvMjAyMi8xMi9BRTUxODUyOS5wZGY1
+Professional - https://www.fwc.gov.au/document-search/view/3/aHR0cHM6Ly9zYXNyY2RhdGFwcmRhdWVhYS5ibG9iLmNvcmUud2luZG93cy5uZXQvZW50ZXJwcmlzZWFncmVlbWVudHMvMjAyMi8xMi9BRTUxODUxMS5wZGY1
+UTas - https://www.fwc.gov.au/document-search/view/3/aHR0cHM6Ly9zYXNyY2RhdGFwcmRhdWVhYS5ibG9iLmNvcmUud2luZG93cy5uZXQvZW50ZXJwcmlzZWFncmVlbWVudHMvMjAyMy8xL0FFNTE5MDI3LnBkZg2
+
+-->
 
 <!-- <div>
   <ul class="ruler" id="mydiv" data-items="10"></ul>
@@ -127,12 +125,12 @@
         dates.push(row[xLabel]);
       }
 
-      var payments = [];
+      var usyd_payments = [];
       var today = new Date().toISOString().slice(0,10);
       for (var i = 0; i < dates.length; i++) {
         pay = currentPay
         if (dates[i] > '2022-07-02') {
-          pay = Math.round(pay*1.02)
+          pay = Math.round(pay*1.021)
         }
         if (dates[i] > today) {
           pay = Math.round(pay*1.046)
@@ -147,7 +145,7 @@
           pay = Math.round(pay*1.035)
         }
         fortnight_pay = pay/365.25*14
-        payments.push(fortnight_pay.toFixed(2));
+        usyd_payments.push(fortnight_pay.toFixed(2));
       }
 
       var inflation_payments = []
@@ -225,9 +223,6 @@
           uplift = 500
         }
       }
-      console.log(currentPayLevel.slice(0,1))
-      console.log(currentPayLevel.slice(3,6))
-      console.log(uplift)
 
       var acu_payments = []
       for (var i = 0; i < dates.length; i++) {
@@ -253,7 +248,7 @@
 
       var trace1 = {
         x: dates,
-        y: payments,
+        y: usyd_payments,
         name: 'USyd Offer',
         mode: 'bar'
       };
@@ -300,6 +295,96 @@
       }
 
       Plotly.newPlot('content', data, layout)
+
+
+      // Calculate totals by FY and over period
+      var usyd_yearly = [],
+          utas_yearly = [],
+          wsu_yearly = [],
+          acu_yearly = [],
+          inflation_yearly = [],
+          finyear = [];
+
+      for (var fy = 22; fy < 27, fy++) {
+        finyear.push('FY'+fy)
+
+        start_date = fy+1999+'07-01'
+        end_date = fy+2000+'06-30'
+        
+        start_index = dates.findIndex(checkStart);
+        end_index = dates.findIndex(checkEnd);
+
+        console.log(dates[start_index])
+        console.log(dates[end_index])
+
+        usyd_yearly.push(usyd_payments.slice(start_index,end_index).reduce((partialSum, a) => partialSum + a, 0));
+        utas_yearly.push(utas_payments.slice(start_index,end_index).reduce((partialSum, a) => partialSum + a, 0));
+        wsu_yearly.push(wsu_payments.slice(start_index,end_index).reduce((partialSum, a) => partialSum + a, 0));
+        acu_yearly.push(acu_payments.slice(start_index,end_index).reduce((partialSum, a) => partialSum + a, 0));
+        inflation_yearly.push(inflation_payments.slice(start_index,end_index).reduce((partialSum, a) => partialSum + a, 0));
+      }
+
+      function checkStart(date){
+        return date > start_date
+      }
+
+      function checkEnd(date){
+        return date > end_date
+      }
+
+      var traceA = {
+        x: finyear,
+        y: usyd_yearly,
+        name: 'USyd Offer',
+        mode: 'bar'
+      };
+
+      var traceB = {
+        x: finyear,
+        y: inflation_yearly,
+        name: 'Predicted CPI',
+        mode: 'bar'
+      };
+
+      var traceC = {
+        x: finyear,
+        y: wsu_yearly,
+        name: 'WSU Agreement',
+        mode: 'bar'
+      };
+
+      var traceD = {
+        x: finyear,
+        y: utas_yearly,
+        name: 'UTas Agreement',
+        mode: 'bar'
+      };
+
+      var traceE = {
+        x: finyear,
+        y: acu_yearly,
+        name: 'ACU Agreement',
+        mode: 'bar'
+      };
+
+      var data2 = [traceA, traceB, traceC, traceD, traceE];
+
+      var layout2 = {
+        xaxis:{
+          title: 'Financial Year'
+        },
+        yaxis:{
+          title: 'Gross pay per financial year ($)',
+          // rangemode: 'tozero',
+          autorange: true
+        }
+      }
+
+      Plotly.newPlot('content', data2, layout2)
+
+
+
+
 
     }
 
