@@ -315,8 +315,11 @@ UTas - https://www.fwc.gov.au/document-search/view/3/aHR0cHM6Ly9zYXNyY2RhdGFwcmR
         start_index = dates.findIndex(checkStart);
         end_index = dates.findIndex(checkEnd);
 
-        console.log(dates[start_index])
-        console.log(dates[end_index])
+        console.log('FY'+fy)
+        console.log(start_date)
+        console.log(start_index,dates[start_index])
+        console.log(end_date)
+        console.log(end_index,dates[end_index])
 
         usyd_yearly.push(usyd_payments.slice(start_index,end_index).reduce((partialSum, a) => partialSum + a, 0));
         utas_yearly.push(utas_payments.slice(start_index,end_index).reduce((partialSum, a) => partialSum + a, 0));
