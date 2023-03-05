@@ -318,19 +318,19 @@ UTas - https://www.fwc.gov.au/document-search/view/3/aHR0cHM6Ly9zYXNyY2RhdGFwcmR
           end_index = dates.length
         }
 
-        sum = usyd_payments.slice(start_index,end_index).reduce((partialSum, a) => partialSum + a, 0);
+        sum = usyd_payments.slice(start_index,end_index).reduce((partialSum, a) => partialSum + parseFloat(a), 0);
         usyd_yearly.push(sum);
 
-        sum = utas_payments.slice(start_index,end_index).reduce((partialSum, a) => partialSum + a, 0);
+        sum = utas_payments.slice(start_index,end_index).reduce((partialSum, a) => partialSum + parseFloat(a), 0);
         utas_yearly.push(sum);
 
-        sum = wsu_payments.slice(start_index,end_index).reduce((partialSum, a) => partialSum + a, 0);
+        sum = wsu_payments.slice(start_index,end_index).reduce((partialSum, a) => partialSum + parseFloat(a), 0);
         wsu_yearly.push(sum);
 
-        sum = acu_payments.slice(start_index,end_index).reduce((partialSum, a) => partialSum + a, 0);
+        sum = acu_payments.slice(start_index,end_index).reduce((partialSum, a) => partialSum + parseFloat(a), 0);
         acu_yearly.push(sum);
 
-        sum = inflation_payments.slice(start_index,end_index).reduce((partialSum, a) => partialSum + a, 0);
+        sum = inflation_payments.slice(start_index,end_index).reduce((partialSum, a) => partialSum + parseFloat(a), 0);
         inflation_yearly.push(sum);
       }
 
