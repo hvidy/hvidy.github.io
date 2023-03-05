@@ -458,9 +458,9 @@ UniCanberra - https://www.fwc.gov.au/document-search/view/3/aHR0cHM6Ly9zYXNyY2Rh
       function difference(value1, value2) {
         result = value1 - value2;
         if (result < 0) {
-          resultString = "<p style='color:red'> -$"+parseFloat(Math.abs(result))+"</p>";
+          resultString = "<span class='negative'> -$"+parseFloat(Math.abs(result).toFixed(2))+"</span>";
         } else {
-          resultString = "<p style='color:black'> +$"+parseFloat(result)+"</p>";
+          resultString = "<span class='positive'> +$"+parseFloat(result.toFixed(2))+"</span>";
         }
         return resultString;
       }

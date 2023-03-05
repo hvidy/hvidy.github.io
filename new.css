@@ -7,6 +7,9 @@ li {color: black; font-family: Verdana, Arial, Helvetica, sans-serif;}
 a.ext:link {color: grey; text-decoration: none; font-weight: bold; font-family: Verdana, Arial, Helvetica, sans-serif;}
 a.ext:after {content: url(http://upload.wikimedia.org/wikipedia/commons/4/44/Icon_External_Link.svg); margin: 0 0 0 5px;}
 
+.negative {color: red;}
+
+.positive {color: black;}
 
 /*div#navigation {height: 21px; left: 2.5%; right: 2.5%; background: black; background-image: url("banner.png"); background-size: cover; background-position:center; background-repeat: no-repeat; padding: 15px; margin: 0px 0px 10px 0px; overflow: auto; position: fixed; }
 
