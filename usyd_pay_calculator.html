@@ -217,9 +217,11 @@
       if (currentPayLevel.slice(0,1) == 'A' || currentPayLevel.slice(3,4) < 6){
         uplift = 1000
       }
-      if (currentPayLevel.slice(3,4) > 5 || currentPayLevel.slice(3,4) < 8){
+      if (currentPayLevel.slice(3,4) > 5 && currentPayLevel.slice(3,4) < 8){
         uplift = 500
       }
+      console.log(currentPayLevel.slice(0,1))
+      console.log(currentPayLevel.slice(3,4))
       console.log(uplift)
 
       var acu_payments = []
