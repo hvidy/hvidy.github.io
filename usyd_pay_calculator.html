@@ -102,6 +102,7 @@
 
     function getPayLevelData(chosenPayLevel) {
       currentPay = [];
+      currentPayLevel = chosenPayLevel
       for (var i = 0; i < allPayLevels.length; i++){
         if (allPayLevels[i] === chosenPayLevel) {
           currentPay.push(allPay[i]);
@@ -214,10 +215,10 @@
       }
 
       var uplift = 0
-      if (chosenPayLevel.slice(0,1) == 'A' || chosenPayLevel.slice(3,4) < 6){
+      if (currentPayLevel.slice(0,1) == 'A' || currentPayLevel.slice(3,4) < 6){
         uplift = 1000
       }
-      if (chosenPayLevel.slice(3,4) > 5 || chosenPayLevel.slice(3,4) < 8){
+      if (currentPayLevel.slice(3,4) > 5 || currentPayLevel.slice(3,4) < 8){
         uplift = 500
       }
 
