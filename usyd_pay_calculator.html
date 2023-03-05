@@ -129,7 +129,6 @@
 
       var payments = [];
       var today = new Date().toISOString().slice(0,10);
-      console.log(today)
       for (var i = 0; i < dates.length; i++) {
         pay = currentPay
         if (dates[i] > '2022-07-02') {
@@ -221,6 +220,7 @@
       if (currentPayLevel.slice(3,4) > 5 || currentPayLevel.slice(3,4) < 8){
         uplift = 500
       }
+      console.log(uplift)
 
       var acu_payments = []
       for (var i = 0; i < dates.length; i++) {
