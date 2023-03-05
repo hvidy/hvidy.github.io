@@ -49,7 +49,7 @@
 <h2>Notes</h2>
 <ul>
   <li>All payments are before tax.</li>
-  <li>Professional Staff salarys are shown for a 35 hour week.</li>
+  <li>Professional Staff salaries are shown for a 35 hour week.</li>
   <li>The 2023 pay increase for the USyd Offer is calculated as if it occurs for the <i>current</i> pay period, instead of the first pay period following the commencement of the new agreement, because we do not yet know when agreement will be reached. This has the effect of inflating the value of the University's offer.</li>
   <li>The one-off payments of $1000 in 2022 and proposed $2000 on agreement are included in the yearly and 5-yearly totals, but not in the chart of pay per fortnight.</li>
   <li>The effects of promotions and yearly progression up steps within paygrades are not included.</li>
@@ -445,11 +445,25 @@ UniCanberra - https://www.fwc.gov.au/document-search/view/3/aHR0cHM6Ly9zYXNyY2Rh
 
       document.getElementById('content-totals').innerHTML =
       "<h2>Total earnings (July 2021 &ndash; June 2026)</h2>" +
-      "<b>USyd Offer: </b> $" + parseFloat(Math.round(usyd_total,2)) + "<br>" +
-      "<b>Predicted CPI: </b> $" + parseFloat(Math.round(inflation_total,2)) + "<br>" +
-      "<b>WSU Agreement: </b> $" + parseFloat(Math.round(wsu_total,2)) + "<br>" +
-      "<b>UTas Agreement: </b> $" + parseFloat(Math.round(utas_total,2)) + "<br>" +
-      "<b>ACU Agreement: </b> $" + parseFloat(Math.round(acu_total,2));
+      "<b>USyd Offer: </b> $" + parseFloat(usyd_total.toFixed(2)) + "<br><br>" +
+      "<b>Predicted CPI: </b> $" + parseFloat(inflation_total.toFixed(2)) + "<br>" +
+      "<b>USyd Offer - Predicted CPI: " + difference(usyd_total.toFixed(2),inflation_total.toFixed(2)) + "<br><br>"
+      "<b>WSU Agreement: </b> $" + parseFloat(wsu_total.toFixed(2)) + "<br>" +
+      "<b>USyd Offer - WSU Agreement: " + difference(usyd_total.toFixed(2),wsu_total.toFixed(2)) + "<br><br>"
+      "<b>UTas Agreement: </b> $" + parseFloat(utas_total.toFixed(2)) + "<br>" +
+      "<b>USyd Offer - UTas Agreement: " + difference(usyd_total.toFixed(2),utas_total.toFixed(2)) + "<br><br>"
+      "<b>ACU Agreement: </b> $" + parseFloat(acu_total.toFixed(2)) + "<br>"
+      "<b>USyd Offer - ACU Agreement: " + difference(usyd_total.toFixed(2),acu_total.toFixed(2));
+
+      function difference(value1, value2) {
+        result = value1 - value2;
+        if (result < 0) {
+          resultString = "<p style='color:red'> -$"+parseFloat(Math.abs(result))+"</p>";
+        } else {
+          resultString = "<p style='color:black'> +$"+parseFloat(result)+"</p>";
+        }
+        return resultString;
+      }
 
 
 
