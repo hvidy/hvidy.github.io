@@ -50,7 +50,7 @@
 <ul>
   <li>All payments are before tax.</li>
   <li>Professional Staff salaries are shown for a 35 hour week.</li>
-  <li>The 2023 pay increase for the USyd Offer is calculated as if it occurs for the <i>current</i> pay period, instead of the first pay period following the commencement of the new agreement, because we do not yet know when agreement will be reached. This has the effect of inflating the value of the University's offer.</li>
+  <li>The 2023 pay increase for the USyd Offer is calculated as if it occurs for the next pay period, instead of the first pay period following the commencement of the new agreement, because we do not yet know when agreement will be reached. This has the effect of inflating the value of the University's offer because it is unlikely agreement will be reached before the next pay period.</li>
   <li>The one-off payments of $1000 in 2022 and proposed $2000 on agreement are included in the yearly and 5-yearly totals, but not in the chart of pay per fortnight.</li>
   <li>The effects of promotions and yearly progression up steps within paygrades are not included.</li>
   <li>Employer superannuation contributions are determined as a percentage of salary, so a lower salary results in smaller contributions. The effects of this are not included.</li>
@@ -64,34 +64,13 @@
     </ul>
     At the time of writing, no other university has its new enterprise agreement available on the Fair Work Comission website, so they are not included.
   </li>
+  <li>In addition to the percentage pay increases, the agreements at Western Sydney University and the Australian Catholic University also include salary 'uplifts' for staff on lower pay grades. At both universities, these uplifts are $1000 for HEO/HEW 1-5 professional staff, and $500 for HEO/HEW 6-7 professional staff. At ACU, level A academic staff also receive a $1000 uplift. Unlike one-off payments, these uplifts are permanent increases to the base salary. See those enterprise agreements for further detail.</li>
   <li>While the University of Sydney's pay offer includes another pay increase in July 2026, the other university agreements expire before this time, so it is not possible to do a comparision for Financial Year 2027.</li>
 </ul>
 </p>
 
 </body>
 
-<!--
-Agreements:
-ACU - https://www.fwc.gov.au/document-search/view/3/aHR0cHM6Ly9zYXNyY2RhdGFwcmRhdWVhYS5ibG9iLmNvcmUud2luZG93cy5uZXQvZW50ZXJwcmlzZWFncmVlbWVudHMvMjAyMy8yL0FFNTE5MDUzLnBkZg2
-WSU - Academic - https://www.fwc.gov.au/document-search/view/3/aHR0cHM6Ly9zYXNyY2RhdGFwcmRhdWVhYS5ibG9iLmNvcmUud2luZG93cy5uZXQvZW50ZXJwcmlzZWFncmVlbWVudHMvMjAyMi8xMi9BRTUxODUyOS5wZGY1
-Professional - https://www.fwc.gov.au/document-search/view/3/aHR0cHM6Ly9zYXNyY2RhdGFwcmRhdWVhYS5ibG9iLmNvcmUud2luZG93cy5uZXQvZW50ZXJwcmlzZWFncmVlbWVudHMvMjAyMi8xMi9BRTUxODUxMS5wZGY1
-UTas - https://www.fwc.gov.au/document-search/view/3/aHR0cHM6Ly9zYXNyY2RhdGFwcmRhdWVhYS5ibG9iLmNvcmUud2luZG93cy5uZXQvZW50ZXJwcmlzZWFncmVlbWVudHMvMjAyMy8xL0FFNTE5MDI3LnBkZg2
-
-UniCanberra - https://www.fwc.gov.au/document-search/view/3/aHR0cHM6Ly9zYXNyY2RhdGFwcmRhdWVhYS5ibG9iLmNvcmUud2luZG93cy5uZXQvZW50ZXJwcmlzZWFncmVlbWVudHMvMjAxOS82L2FlNTA0MTIzLnBkZg2
--->
-
-<!-- <div>
-  <ul class="ruler" id="mydiv" data-items="10"></ul>
-</div>
- -->
-
-<!-- <div>
-  <div class="slidecontainer">
-    <input type="range" min="1" max="15" value="1" class="slider" id="spacing" step=0.25>
-  </div>
-</div>
-
- -->
 <!-- Scripts! ––––––––––––––––––––––––––––––––––––––––––––––––––-->
 <script>
 
@@ -161,22 +140,31 @@ UniCanberra - https://www.fwc.gov.au/document-search/view/3/aHR0cHM6Ly9zYXNyY2Rh
       }
 
       var usyd_payments = [];
-      var today = new Date().toISOString().slice(0,10);
+      
+      Date.prototype.addDays = function(days) {
+          var date = new Date(this.valueOf());
+          date.setDate(date.getDate() + days);
+          return date;
+      }
+
+      var today = new Date()
+      var nextFortnight = today.addDays(14).toISOString().slice(0,10);
+
       for (var i = 0; i < dates.length; i++) {
         pay = currentPay
-        if (dates[i] > '2022-07-02') {
+        if (dates[i] > '2022-07-13') {
           pay = Math.round(pay*1.021)
         }
-        if (dates[i] > today) {
+        if (dates[i] > nextFortnight) {
           pay = Math.round(pay*1.046)
         }
-        if (dates[i] > '2024-07-01') {
+        if (dates[i] > '2024-07-13') {
           pay = Math.round(pay*1.0325)
         }
-        if (dates[i] > '2025-07-01') {
+        if (dates[i] > '2025-07-13') {
           pay = Math.round(pay*1.0325)
         }
-        if (dates[i] > '2026-07-01') {
+        if (dates[i] > '2026-07-13') {
           pay = Math.round(pay*1.035)
         }
         fortnight_pay = pay/365.25*14
@@ -186,21 +174,18 @@ UniCanberra - https://www.fwc.gov.au/document-search/view/3/aHR0cHM6Ly9zYXNyY2Rh
       var inflation_payments = []
       for (var i = 0; i < dates.length; i++) {
         pay = currentPay
-        if (dates[i] > '2022-07-01') {
+        if (dates[i] > '2022-07-13') {
           pay = Math.round(pay*1.061)
         }
-        if (dates[i] > '2023-07-01') {
+        if (dates[i] > '2023-07-13') {
           pay = Math.round(pay*1.067)
         }
-        if (dates[i] > '2024-07-01') {
+        if (dates[i] > '2024-07-13') {
           pay = Math.round(pay*1.036)
         }
-        if (dates[i] > '2025-07-01') {
+        if (dates[i] > '2025-07-13') {
           pay = Math.round(pay*1.03)
         }
-        // if (dates[i] > '2026-07-01') {
-        //   pay = Math.round(pay*1.025)
-        // }
         fortnight_pay = pay/365.25*14
         inflation_payments.push(fortnight_pay.toFixed(2));
       }
@@ -221,16 +206,16 @@ UniCanberra - https://www.fwc.gov.au/document-search/view/3/aHR0cHM6Ly9zYXNyY2Rh
         if (dates[i] > '2022-04-29') {
           pay = Math.round(pay*1.02)
         }
-        if (dates[i] > '2022-10-14') {
+        if (dates[i] > '2022-10-27') {
           pay = Math.round(pay*1.026+uplift)
         }
-        if (dates[i] > '2023-10-01') {
+        if (dates[i] > '2023-10-13') {
           pay = Math.round(pay*1.0335)
         }
-        if (dates[i] > '2024-10-01') {
+        if (dates[i] > '2024-10-13') {
           pay = Math.round(pay*1.029)
         }
-        if (dates[i] > '2025-03-01') {
+        if (dates[i] > '2025-03-13') {
           pay = Math.round(pay*1.026)
         }
         fortnight_pay = pay/365.25*14
@@ -240,16 +225,16 @@ UniCanberra - https://www.fwc.gov.au/document-search/view/3/aHR0cHM6Ly9zYXNyY2Rh
       var utas_payments = []
       for (var i = 0; i < dates.length; i++) {
         pay = currentPay
-        if (dates[i] > '2022-07-06') {
+        if (dates[i] > '2022-07-19') {
           pay = Math.round(pay*1.046)
         }
-        if (dates[i] > '2023-07-01') {
+        if (dates[i] > '2023-07-13') {
           pay = Math.round(pay*1.03)
         }
-        if (dates[i] > '2024-07-01') {
+        if (dates[i] > '2024-07-13') {
           pay = Math.round(pay*1.025)
         }
-        if (dates[i] > '2025-06-15') {
+        if (dates[i] > '2025-06-28') {
           pay = Math.round(pay*1.034)
         }
         fortnight_pay = pay/365.25*14
@@ -272,19 +257,19 @@ UniCanberra - https://www.fwc.gov.au/document-search/view/3/aHR0cHM6Ly9zYXNyY2Rh
       var acu_payments = []
       for (var i = 0; i < dates.length; i++) {
         pay = currentPay
-        if (dates[i] > '2022-07-09') {
+        if (dates[i] > '2022-07-23') {
           pay = Math.round(pay*1.022)
         }
-        if (dates[i] > '2023-01-01') {
+        if (dates[i] > '2023-01-13') {
           pay = Math.round((pay+uplift)*1.028)
         }
-        if (dates[i] > '2024-01-01') {
+        if (dates[i] > '2024-01-13') {
           pay = Math.round(pay*1.0375)
         }
-        if (dates[i] > '2025-01-01') {
+        if (dates[i] > '2025-01-13') {
           pay = Math.round(pay*1.03)
         }
-        if (dates[i] > '2025-06-30') {
+        if (dates[i] > '2025-07-12') {
           pay = Math.round(pay*1.028)
         }
         fortnight_pay = pay/365.25*14
