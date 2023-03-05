@@ -194,6 +194,24 @@
         wsu_payments.push(fortnight_pay.toFixed(2));
       }    
 
+      var utas_payments = []
+      for (var i = 0; i < dates.length; i++) {
+        pay = currentPay
+        if (dates[i] > '2022-07-06') {
+          pay = Math.round(pay*1.046)
+        }
+        if (dates[i] > '2023-07-01') {
+          pay = Math.round(pay*1.03)
+        }
+        if (dates[i] > '2024-07-01') {
+          pay = Math.round(pay*1.025)
+        }
+        if (dates[i] > '2025-06-15') {
+          pay = Math.round(pay*1.034)
+        }
+        fortnight_pay = pay/365.25*14
+        utas_payments.push(fortnight_pay.toFixed(2));
+      }
 
       var trace1 = {
         x: dates,
@@ -216,8 +234,14 @@
         mode: 'bar'
       };
 
+      var trace4 = {
+        x: dates,
+        y: utas_payments,
+        name: 'UTas Agreement',
+        mode: 'bar'
+      };
 
-      var data = [trace1, trace2, trace3];
+      var data = [trace1, trace2, trace3, trace4];
 
       var layout = {
         xaxis:{
@@ -267,166 +291,12 @@
 
   });
 
-  // function makeplot() {
-    
-  // };
-
-  // function processData(allRows,xLabel,yLabel) {
-  //   console.log(allRows.length);
-  //   var x = [], y=[];
-
-  //   for (var i=0; i<allRows.length; i++) {
-  //     row = allRows[i]
-
-  //     x.push(row[xLabel]);
-  //     y.push(row[yLabel]);
-  //     if(i === 0) {
-  //       console.log(i);
-  //       console.log(row);
-  //     }
-  //   }
-  //   makePlotly(x,y);
-  // }
-
-  // function makePlotly(x,y){
-  //   var traces = [{
-  //     type: 'bar',
-  //     x: x,
-  //     y: y,
-  //   }];
-
-  //   Plotly.newPlot(content, traces);
-  // };
-
-  // makeplot();
 
 //instruction resizes plot
 window.onresize = function() {
   Plotly.Plots.resize(content);
 };
 
-//   Plotly.d3.csv("data/dates.csv", function(err, rows) => {
-//     var data 
-
-
-//     function unpack(date, key) {
-//       return date.map(function(date) { return date[key]; });
-//     }
-
-//   var usyd_trace = {
-//       x: unpack(date, 'date'),
-//       y: unpack(date, 'idx'),
-//       type: 'bar'
-//     };
-
-//   var data = [usyd_trace];
-
-//   Plotly.newPlot(graphDiv, data);
-
-// })
-// }
-
-  // Plotly.d3.csv("data/0531+21_lowf.csv", function(err, ground){
-  //   function unpack(ground, key) {
-  //     return ground.map(function(ground) { return ground[key]; });
-  //   }
-
-//   var trace1 = {
-//     type: "scattergl",
-//     mode: "lines",
-//     name: 'Ground-based',
-//     x: unpack(ground, 'time'),
-//     y: unpack(ground, 'intensity_400'),
-//     marker: {
-//     //color: 'rgb(217,95,2)',
-//     opacity: 0.9,
-//     size: 6,
-//   }
-//   }
-
-//   var data = [
-//     trace1,
-//   ];
-      
-//   var layout = {
-//     hovermode: "closest",
-//     yaxis: {title: 'Intensity'},
-//     xaxis: {title: 'Time (seconds)'},
-//     margin: {
-//       t: 50, //top margin
-//       l: 100, //left margin
-//       r: 50, //right margin
-//       b: 50 //bottom margin
-//           },
-//       legend: {
-//       x: 0,
-//       y: 1,
-//       traceorder: 'normal',
-//       font: {
-//         family: 'sans-serif',
-//         size: 30,
-//         color: '#000'
-//       },
-//       bgcolor: '#E2E2E2',
-//       bordercolor: '#FFFFFF',
-//       borderwidth: 3
-//     },
-//           };
-
-//   var config2 = {
-//    modeBarButtonsToRemove: ['toImage', 'sendDataToCloud', 
-//           'hoverCompareCartesian','toggleSpikelines',
-//           'autoScale2d','select2d','lasso2d'],
-//    displaylogo: false
-// };
-
-//   Plotly.newPlot(graphDiv, data, layout, config2);
-
-
-// function dragElement(elmnt) {
-//   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-//   if (document.getElementById(elmnt.id + "header")) {
-//     // if present, the header is where you move the DIV from:
-//     document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-//   } else {
-//     // otherwise, move the DIV from anywhere inside the DIV:
-//     elmnt.onmousedown = dragMouseDown;
-//   }
-
-//   function dragMouseDown(e) {
-//     e = e || window.event;
-//     e.preventDefault();
-//     // get the mouse cursor position at startup:
-//     pos3 = e.clientX;
-//     pos4 = e.clientY;
-//     document.onmouseup = closeDragElement;
-//     // call a function whenever the cursor moves:
-//     document.onmousemove = elementDrag;
-//   }
-
-//   function elementDrag(e) {
-//     e = e || window.event;
-//     e.preventDefault();
-//     // calculate the new cursor position:
-//     pos1 = pos3 - e.clientX;
-//     pos2 = pos4 - e.clientY;
-//     pos3 = e.clientX;
-//     pos4 = e.clientY;
-//     // set the element's new position:
-//     elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-//     elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-//   }
-
-//   function closeDragElement() {
-//     // stop moving when mouse button is released:
-//     document.onmouseup = null;
-//     document.onmousemove = null;
-//   }
-// }
-
-// });
-
-// }
 
 </script>
 
