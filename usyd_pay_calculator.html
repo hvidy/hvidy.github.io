@@ -314,26 +314,32 @@ UTas - https://www.fwc.gov.au/document-search/view/3/aHR0cHM6Ly9zYXNyY2RhdGFwcmR
         
         start_index = dates.findIndex(checkStart);
         end_index = dates.findIndex(checkEnd);
+        if (end_index == -1){
+          end_index = dates.length
+        }
 
-        console.log('FY'+fy)
-        console.log(start_date)
-        console.log(start_index,dates[start_index])
-        console.log(end_date)
-        console.log(end_index,dates[end_index])
+        sum = usyd_payments.slice(start_index,end_index).reduce((partialSum, a) => partialSum + a, 0);
+        usyd_yearly.push(sum);
 
-        usyd_yearly.push(usyd_payments.slice(start_index,end_index).reduce((partialSum, a) => partialSum + a, 0));
-        utas_yearly.push(utas_payments.slice(start_index,end_index).reduce((partialSum, a) => partialSum + a, 0));
-        wsu_yearly.push(wsu_payments.slice(start_index,end_index).reduce((partialSum, a) => partialSum + a, 0));
-        acu_yearly.push(acu_payments.slice(start_index,end_index).reduce((partialSum, a) => partialSum + a, 0));
-        inflation_yearly.push(inflation_payments.slice(start_index,end_index).reduce((partialSum, a) => partialSum + a, 0));
+        sum = utas_payments.slice(start_index,end_index).reduce((partialSum, a) => partialSum + a, 0);
+        utas_yearly.push(sum);
+
+        sum = wsu_payments.slice(start_index,end_index).reduce((partialSum, a) => partialSum + a, 0);
+        wsu_yearly.push(sum);
+
+        sum = acu_payments.slice(start_index,end_index).reduce((partialSum, a) => partialSum + a, 0);
+        acu_yearly.push(sum);
+
+        sum = inflation_payments.slice(start_index,end_index).reduce((partialSum, a) => partialSum + a, 0);
+        inflation_yearly.push(sum);
       }
 
       function checkStart(date){
-        return date > start_date
+        return date > start_date;
       }
 
       function checkEnd(date){
-        return date > end_date
+        return date > end_date;
       }
 
       var traceA = {
