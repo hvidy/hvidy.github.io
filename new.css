@@ -2,6 +2,7 @@ h1 {color: black; font-family: Verdana, Arial, Helvetica, sans-serif;}
 h2 {color: black; font-family: Verdana, Arial, Helvetica, sans-serif;} 
 p {color: black; font-family: Verdana, Arial, Helvetica, sans-serif;}
 ul {color: black; font-family: Verdana, Arial, Helvetica, sans-serif;}
+li {color: black; font-family: Verdana, Arial, Helvetica, sans-serif;}
 
 a.ext:link {color: grey; text-decoration: none; font-weight: bold; font-family: Verdana, Arial, Helvetica, sans-serif;}
 a.ext:after {content: url(http://upload.wikimedia.org/wikipedia/commons/4/44/Icon_External_Link.svg); margin: 0 0 0 5px;}
