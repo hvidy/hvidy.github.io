@@ -205,6 +205,16 @@ UniCanberra - https://www.fwc.gov.au/document-search/view/3/aHR0cHM6Ly9zYXNyY2Rh
         inflation_payments.push(fortnight_pay.toFixed(2));
       }
 
+      var uplift = 0
+      if (currentPayLevel.slice(0,1) == 'H'){
+        if (currentPayLevel.slice(3,6) < 6){
+          uplift = 1000
+        }
+        if (currentPayLevel.slice(3,6) > 6 && currentPayLevel.slice(3,6) < 8){
+          uplift = 500
+        }
+      }
+
       var wsu_payments = []
       for (var i = 0; i < dates.length; i++) {
         pay = currentPay
@@ -212,7 +222,7 @@ UniCanberra - https://www.fwc.gov.au/document-search/view/3/aHR0cHM6Ly9zYXNyY2Rh
           pay = Math.round(pay*1.02)
         }
         if (dates[i] > '2022-10-14') {
-          pay = Math.round(pay*1.026)
+          pay = Math.round(pay*1.026+uplift)
         }
         if (dates[i] > '2023-10-01') {
           pay = Math.round(pay*1.0335)
